@@ -1,20 +1,21 @@
 import unittest
-from translator import english_to_french, french_to_english
+from translator import french_to_english,english_to_french
 
-class TestENFR(unittest.TestCase): 
-    def test1(self): 
-        self.assertEqual(english_to_french('Hello'), 'Bonjour')
-        self.assertEqual(english_to_french('Goodbye'), 'Au revoir')
-        self.assertNotEqual(french_to_english('Love'), 'Au revoir')
+class TestTranslations(unittest.TestCase):
 
+    def test_null_english_to_french(self):
+        with self.assertRaises(Exception):
+            english_to_french(None)
 
+    def test_null_french_to_english(self):
+        with self.assertRaises(Exception):
+            french_to_english(None)
 
-class TestFREN(unittest.TestCase): 
-    def test1(self): 
-        self.assertEqual(french_to_english('Bonjour'), 'Hello')
-        self.assertEqual(french_to_english('Au revoir'), 'Goodbye')
-        self.assertNotEqual(french_to_english('Au revoir'), 'Love')
+    def test_hello_english_to_french(self):
+        self.assertEqual(english_to_french("Hello"), "Bonjour")
 
+    def test_bonjour_french_to_english(self):
+        self.assertEqual(french_to_english("Bonjour"), "Hello")
 
- 
-unittest.main()
+if __name__ == '__main__':
+    unittest.main()
